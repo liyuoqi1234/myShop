@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::prefix('/user')->group(function(){
+Route::prefix('/user')->middleware('user')->group(function(){
     Route::get('index','userController@index');
     Route::get('add','userController@add');
     Route::any('do_add','userController@do_add');
@@ -30,6 +30,11 @@ Route::prefix('/login')->group(function(){
     Route::any('doadd','Login@doadd');
     Route::any('dladd','Login@dladd');
     Route::any('dodladd','Login@dodladd');
+});
+
+Route::prefix('/goods')->group(function(){
+    Route::get('add','admin\Goods@add');
+    Route::any('doadd','admin\Goods@doadd');
 });
 
 
