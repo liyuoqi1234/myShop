@@ -47,8 +47,11 @@ class Login extends Controller
         // dd($res);exit;
         // where条件
         $data = DB::table('zhuc')->where('name',$res['name'])->where('pwd',$res['pwd'])->first();
+        // dd()
         if(!empty($data)){
-            return redirect('login/index');
+            Session(['data'=>$res['name']]);
+            return redirect('good/index');
         }
+
     }
 }
